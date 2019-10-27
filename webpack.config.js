@@ -10,7 +10,7 @@ let outputFilename = '[name].js';
 
 module.exports = {
     mode: 'production',
-    entry: './src/main.js',
+    entry: './js/main.js',
     output: {
         filename: outputFilename,
         path: outDirectory,

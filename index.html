@@ -2,11 +2,92 @@
 <html>
 
 <head>
-    <title>SCSS Webpack Demo App</title>
+    <title>Stock App</title>
+    <link type="text/css" href="css/main.css">
 </head>
 
 <body>
-    <h1 class="title">SCSS Webpack Demo App</h1>
+
+<h1 class="title">Check your stock by entering a comma-separated list of stock symbols</h1>
+<textarea id="text"></textarea>
+<button type="button" id="submit">Submit</button>
+
+<table style="width:100%">
+    <tr id="symbol">
+        <th>symbol</th>
+    </tr>
+    <tr id="name">
+        <th>name</th>
+    </tr>
+    <tr id="currency">
+        <th>currency</th>
+    </tr>
+    <tr id="price">
+        <th>price</th>
+    </tr>
+    <tr id="price_open">
+        <th>price_open</th>
+    </tr>
+    <tr id="day_high">
+        <th>day_high</th>
+    </tr>
+    <tr id="day_low">
+        <th>day_low</th>
+    </tr>
+    <tr id="52_week_high">
+        <th>52_week_high</th>
+    </tr>
+    <tr id="52_week_low">
+        <th>52_week_low</th>
+    </tr>
+    <tr id="day_change">
+        <th>day_change</th>
+    </tr>
+    <tr id="change_pct">
+        <th>change_pct</th>
+    </tr>
+    <tr id="close_yesterday">
+        <th>close_yesterday</th>
+    </tr>
+    <tr id="market_cap">
+        <th>market_cap</th>
+    </tr>
+    <tr id="volume">
+        <th>volume</th>
+    </tr>
+    <tr id="volume_avg">
+        <th>volume_avg</th>
+    </tr>
+    <tr id="shares">
+        <th>shares</th>
+    </tr>
+    <tr id="stock_exchange_long">
+        <th>stock_exchange_long</th>
+    </tr>
+    <tr id="stock_exchange_short">
+        <th>stock_exchange_short</th>
+    </tr>
+    <tr id="timezone">
+        <th>timezone</th>
+    </tr>
+    <tr id="timezone_name">
+        <th>timezone_name</th>
+    </tr>
+    <tr id="gmt_offset">
+        <th>gmt_offset</th>
+    </tr>
+    <tr id="last_trade_time">
+        <th>last_trade_time</th>
+    </tr>
+    <tr id="pe">
+        <th>pe</th>
+    </tr>
+    <tr id="eps">
+        <th>eps</th>
+    </tr>
+</table>
+
+<script type="text/javascript" src="js/main.js"></script>
 </body>
 
 </html>
