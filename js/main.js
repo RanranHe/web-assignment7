@@ -1,69 +1,38 @@
-
 document.getElementById("submit").onclick = function () {
-    fetch("https://api.worldtradingdata.com/api/v1/stock?symbol=SNAP,TWTR,VOD.L&api_token=demo",{
+    let attributes;
+    let content = document.getElementById('text').value;
+    let apiKey = "b18c2oMvG8IIXhOBj1krVOCU5wXLXplSHquaJuBNLNQuaxyEH84PV3ZiPcjC";
+    // "https://api.worldtradingdata.com/api/v1/stock?symbol=SNAP,TWTR,VOD.L&api_token=demo"
+    fetch("https://api.worldtradingdata.com/api/v1/stock?symbol=" + content + "&api_token=" + apiKey, {
         method: "GET",
         credentials: 'omit'
     }).then(res => res.json())
         .then(json => {
-        console.log(json.data);
-        let arr = json.data;
-        if(arr) {
-            let attributes = Object.getOwnPropertyNames(arr[0]);
-            console.log(attributes);
-            for (let i=0; i<arr.length; i++) {
-                for (let j=0; j<attributes.length; j++) {
-                    let name = `${attributes[j]}`;
-                    console.log(name);
-                    let innerHTML = document.getElementById(`${attributes[j]}`).innerHTML;
-                    document.getElementById(`${attributes[j]}`).innerHTML= innerHTML + '<td>'+ arr[i][name]+'</td>';
-                }
-
-
-                // let innerHTML = document.getElementById("symbol").innerHTML;
-                // document.getElementById("symbol").innerHTML= innerHTML + '<td>'+arr[i].symbol+'</td>';
-
-                // innerHTML = document.getElementById("name").innerHTML;
-                // document.getElementById("name").innerHTML= innerHTML + '<td>'+arr[i].name+'</td>';
-                //
-                // innerHTML = document.getElementById("currency").innerHTML;
-                // document.getElementById("currency").innerHTML= innerHTML + '<td>'+arr[i].currency+'</td>';
-                //
-                // innerHTML = document.getElementById("price").innerHTML;
-                // document.getElementById("price").innerHTML= innerHTML + '<td>'+arr[i].price+'</td>';
-                //
-                // innerHTML = document.getElementById("name").innerHTML;
-                // document.getElementById("name").innerHTML= innerHTML + '<td>'+arr[i].name+'</td>';
-                //
-                // innerHTML = document.getElementById("name").innerHTML;
-                // document.getElementById("name").innerHTML= innerHTML + '<td>'+arr[i].name+'</td>';
-                //
-                // innerHTML = document.getElementById("name").innerHTML;
-                // document.getElementById("name").innerHTML= innerHTML + '<td>'+arr[i].name+'</td>';
-                //
-                // innerHTML = document.getElementById("name").innerHTML;
-                // document.getElementById("name").innerHTML= innerHTML + '<td>'+arr[i].name+'</td>';
-                //
-                // innerHTML = document.getElementById("name").innerHTML;
-                // document.getElementById("name").innerHTML= innerHTML + '<td>'+arr[i].name+'</td>';
-                //
-                // innerHTML = document.getElementById("name").innerHTML;
-                // document.getElementById("name").innerHTML= innerHTML + '<td>'+arr[i].name+'</td>';
-                //
-                // innerHTML = document.getElementById("name").innerHTML;
-                // document.getElementById("name").innerHTML= innerHTML + '<td>'+arr[i].name+'</td>';
-                //
-                // innerHTML = document.getElementById("name").innerHTML;
-                // document.getElementById("name").innerHTML= innerHTML + '<td>'+arr[i].name+'</td>';
-                //
-                // innerHTML = document.getElementById("name").innerHTML;
-                // document.getElementById("name").innerHTML= innerHTML + '<td>'+arr[i].name+'</td>';
-                //
-                // innerHTML = document.getElementById("name").innerHTML;
-                // document.getElementById("name").innerHTML= innerHTML + '<td>'+arr[i].name+'</td>';
-                //
-                // innerHTML = document.getElementById("name").innerHTML;
-                // document.getElementById("name").innerHTML= innerHTML + '<td>'+arr[i].name+'</td>';
+            let arr = json.data;
+            if (arr) {
+                attributes = Object.getOwnPropertyNames(arr[0]);
+                showResult(attributes, arr, resetTable(attributes));
             }
+        });
+
+    function showResult(attributes, arr, callback) {
+        setTimeout(function () {
+            for (let i = 0; i < arr.length; i++) {
+                for (let j = 0; j < attributes.length; j++) {
+                    let name = `${attributes[j]}`;
+                    let innerHTML = document.getElementById(name).innerHTML;
+                    document.getElementById(name).innerHTML = innerHTML + '<td>' + arr[i][name] + '</td>';
+                }
+            }
+            callback && callback();
+        }, 50);
+    }
+
+    function resetTable(attributes) {
+        for (let j = 0; j < attributes.length; j++) {
+            let name = `${attributes[j]}`;
+            document.getElementById(name).innerHTML = '';
         }
-    })
+    }
 };
+
