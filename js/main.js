@@ -36,25 +36,5 @@ document.getElementById("submit").onclick = function () {
         document.getElementById('table').innerHTML = '';
         document.getElementById('table').appendChild(header);
     }
-
-    // function showResult(attributes, arr, callback) {
-    //     setTimeout(function () {
-    //         for (let i = 0; i < arr.length; i++) {
-    //             for (let j = 0; j < attributes.length; j++) {
-    //                 let name = `${attributes[j]}`;
-    //                 let innerHTML = document.getElementById(name).innerHTML;
-    //                 document.getElementById(name).innerHTML = innerHTML + '<td>' + arr[i][name] + '</td>';
-    //             }
-    //         }
-    //         callback && callback();
-    //     }, 50);
-    // }
-    //
-    // function resetTable(attributes) {
-    //     for (let j = 0; j < attributes.length; j++) {
-    //         let name = `${attributes[j]}`;
-    //         document.getElementById(name).innerHTML = '';
-    //     }
-    // }
 };
 
