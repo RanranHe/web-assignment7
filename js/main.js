@@ -36,6 +36,8 @@ function submit() {
                 if (arr !== null && arr !== undefined) {
                     // get attributes of stock
                     attributes = Object.getOwnPropertyNames(arr[0]);
+                    document.getElementById('result_2').innerHTML=json.symbols_requested;
+                    document.getElementById('result_1').innerHTML=json.symbols_returned;
                     showResult(arr, attributes); // add results to table
                 } else {
                     alert("No results. Please try again.");
