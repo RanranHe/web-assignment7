@@ -1,27 +1,36 @@
 import * as rxjs from 'rxjs';
 
 let btn_submit = document.getElementById("submit");
-let submitEvent=rxjs.fromEvent(btn_submit,'click');
-let submit_subscription=submitEvent.subscribe(submit);
+let submitEvent = rxjs.fromEvent(btn_submit, 'click');
+let submit_subscription = submitEvent.subscribe(submit);
 
 function submit() {
     resetTable();
     let attributes;
     let content = document.getElementById('text').value;
-    let apiKey = "b18c2oMvG8IIXhOBj1krVOCU5wXLXplSHquaJuBNLNQuaxyEH84PV3ZiPcjC";
-    // "https://api.worldtradingdata.com/api/v1/stock?symbol=SNAP.L&api_token=demo"
-    fetch("https://api.worldtradingdata.com/api/v1/stock?symbol=" + content + "&api_token=" + apiKey, {
-        method: "GET",
-        credentials: 'omit'
-    }).then(res => res.json())
-        .then(json => {
-            let arr = json.data;
-            console.log(arr.length);
-            if (arr) {
-                attributes = Object.getOwnPropertyNames(arr[0]);
-                showResult(arr, attributes);
-            }
-        });
+    // let pattern = new RegExp("\\w+(,\\w+)*");
+    let pattern = new RegExp('^\\w+(,\\w)*$');
+    console.log(pattern.test(content))
+    if (pattern.test(content)) {
+        console.log("here")
+        let apiKey = "b18c2oMvG8IIXhOBj1krVOCU5wXLXplSHquaJuBNLNQuaxyEH84PV3ZiPcjC";
+        // "https://api.worldtradingdata.com/api/v1/stock?symbol=SNAP.L&api_token=demo"
+        fetch("https://api.worldtradingdata.com/api/v1/stock?symbol=" + content + "&api_token=" + apiKey, {
+            method: "GET",
+            credentials: 'omit'
+        }).then(res => res.json())
+            .then(json => {
+                let arr = json.data;
+                console.log(arr.length);
+                if (arr) {
+                    attributes = Object.getOwnPropertyNames(arr[0]);
+                    showResult(arr, attributes);
+                }
+            });
+    } else {
+        alert("The input needs to be separated by comma without space in front of each symbol. Please try again.");
+    }
+
 
     // SNAP,TWTR,VOD,SNA,UPSN,SPU.F
     function showResult(arr, attributes) {
