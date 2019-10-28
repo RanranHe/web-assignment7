@@ -1,3 +1,6 @@
+import './../css/main.css';
+// import './../src/rx.js';
+
 import * as rxjs from 'rxjs';
 
 // get submit button
@@ -13,7 +16,7 @@ function submit() {
     // get client input
     let content = document.getElementById('text').value;
     // regular expression
-    let pattern = new RegExp('^\\w+(,\\w)*$');
+    let pattern = new RegExp('^[\\w.]+(,[\\w.]+)*$');
 
     // check whether the input matches regular expression
     if (pattern.test(content)) {
@@ -30,11 +33,12 @@ function submit() {
         }).then(res => res.json()) // parses JSON response into native JavaScript objects
             .then(json => {
                 let arr = json.data; // get results from response
-                console.log(arr.length);
-                if (arr) {
+                if (arr !== null && arr !== undefined) {
                     // get attributes of stock
                     attributes = Object.getOwnPropertyNames(arr[0]);
                     showResult(arr, attributes); // add results to table
+                } else {
+                    alert("No results. Please try again.");
                 }
             });
     } else { // if doesn't match pattern
@@ -42,7 +46,7 @@ function submit() {
     }
 
 
-    // SNAP,TWTR,VOD,SNA,UPSN,SPU.F
+    // SNAP,TWTR,VOD,SNA,UPSN,SPU.F,a,aa
     // add results to table
     function showResult(arr, attributes) {
         for (let i = 0; i < arr.length; i++) {
