@@ -36,6 +36,7 @@
     "webpack-dev-server": "3.1.14"
   },
   "dependencies": {
-    "express-cache-controller": "^1.1.0"
+    "express-cache-controller": "^1.1.0",
+    "rxjs": "^6.5.3"
   }
 }

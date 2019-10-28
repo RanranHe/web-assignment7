@@ -1,9 +1,15 @@
-document.getElementById("submit").onclick = function () {
+import * as rxjs from 'rxjs';
+
+let btn_submit = document.getElementById("submit");
+let submitEvent=rxjs.fromEvent(btn_submit,'click');
+let submit_subscription=submitEvent.subscribe(submit);
+
+function submit() {
     resetTable();
     let attributes;
     let content = document.getElementById('text').value;
     let apiKey = "b18c2oMvG8IIXhOBj1krVOCU5wXLXplSHquaJuBNLNQuaxyEH84PV3ZiPcjC";
-    // "https://api.worldtradingdata.com/api/v1/stock?symbol=SNAP,TWTR,VOD.L&api_token=demo"
+    // "https://api.worldtradingdata.com/api/v1/stock?symbol=SNAP.L&api_token=demo"
     fetch("https://api.worldtradingdata.com/api/v1/stock?symbol=" + content + "&api_token=" + apiKey, {
         method: "GET",
         credentials: 'omit'
@@ -36,5 +42,5 @@ document.getElementById("submit").onclick = function () {
         document.getElementById('table').innerHTML = '';
         document.getElementById('table').appendChild(header);
     }
-};
+}
 
