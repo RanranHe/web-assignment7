@@ -42,7 +42,7 @@ function submit() {
                 } else {
                     alert("No results. Please try again.");
                 }
-            });
+            }).catch( error => console.error('error:', error) );;
     } else { // if doesn't match pattern
         alert("The input needs to be separated by comma without space in front of each symbol. Please try again.");
     }
