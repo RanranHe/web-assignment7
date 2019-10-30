@@ -1,5 +1,9 @@
 import * as rxjs from 'rxjs';
 
+window.onload = function() {
+    submit_subscription.unsubscribe();
+};
+
 // get submit button
 let btn_submit = document.getElementById("submit");
 // attach click event to submit button
